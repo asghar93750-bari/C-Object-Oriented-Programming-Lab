@@ -1,0 +1,122 @@
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+// ===============================
+//       BASE CLASS: Person
+// ===============================
+class Person
+{
+protected:
+    string name;
+    int age;
+
+public:
+    Person() : name("Unknown"), age(0) {}
+
+    Person(string n, int a)
+        : name(n), age(a) {}
+
+    void displayBasicInfo() const
+    {
+        cout << "Name       : " << name << endl;
+        cout << "Age        : " << age << endl;
+    }
+};
+
+// ===============================
+//       DERIVED CLASS: Student
+// ===============================
+class Student : public Person
+{
+private:
+    int fee;
+    string course;
+
+public:
+    // Default Constructor
+    Student()
+        : Person(), fee(12500), course("BSIT") {}
+
+    // Parameterized Constructor
+    Student(string n, int a, int f, string c)
+        : Person(n, a), fee(f), course(c) {}
+
+    void greet() const
+    {
+        cout << "Welcome to the Student Management System!" << endl;
+    }
+
+    void display() const
+    {
+        cout << "\n========== STUDENT DETAILS ==========" << endl;
+
+        displayBasicInfo();
+
+        cout << "Fee        : " << fee << endl;
+        cout << "Course     : " << course << endl;
+
+        cout << "=====================================" << endl;
+    }
+};
+
+// ===============================
+//       DERIVED CLASS: Staff
+// ===============================
+class Staff : public Person
+{
+private:
+    string courseTeaching;
+
+public:
+    // Default Constructor
+    Staff()
+        : Person("HOD", 0), courseTeaching("OOP") {}
+
+    // Parameterized Constructor
+    Staff(string n, string c)
+        : Person(n, 0), courseTeaching(c) {}
+
+    void display() const
+    {
+        cout << "\n=========== STAFF DETAILS ===========" << endl;
+
+        displayBasicInfo();
+
+        cout << "Teaching   : " << courseTeaching << endl;
+
+        cout << "=====================================" << endl;
+    }
+};
+
+// ===============================
+//           MAIN FUNCTION
+// ===============================
+int main()
+{
+    // Student Objects
+    Student student1("Ali Asghar", 20, 10000, "BSIT");
+    Student student2("Ahmed", 21, 12000, "BSCS");
+
+    // Staff Objects
+    Staff teacher1("Kamran", "Programming Fundamentals");
+    Staff teacher2("Ali Raza" ,"Mathematics");
+
+    // Display Student Information
+    cout << "\n********** STUDENT MANAGEMENT **********" << endl;
+
+    student1.greet();
+    student1.display();
+    student2.display();
+
+    // Display Staff Information
+    cout << "\n************ STAFF MANAGEMENT **********" << endl;
+
+    teacher1.display();
+    teacher2.display();
+
+    cout << "\n======= PROGRAM EXECUTED SUCCESSFULLY =======" << endl;
+
+    return 0;
+};
